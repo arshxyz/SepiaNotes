@@ -48,7 +48,7 @@ export default function EditorComponent() {
         init={{
             height: "100%",
             content_css:"/Editor.css",
-            skin_url: "/ui",
+            skin_url: "https://arshxyz.github.io/SepiaNotes-tinymce-css/ui/",
           menubar: false,
           skin: "outside",
           branding: false,
