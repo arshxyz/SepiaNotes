@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import NoteListItem from './NoteListItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEditorOpen, view } from '../../Store/UISlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,12 +23,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlignItemsList() {
   const classes = useStyles();
+  const notes = useSelector((state) => state.notes)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(notes)
+  }, [notes])
 
   return (
     <List className={classes.root}>
-        <NoteListItem title="test" content="fdakfjas fdja kfad fadjsk d fjk fdajsk f asdkj" />
-        <NoteListItem title="test" content="fdakfjas fdja kfafdakfjas fdja kfa" />
-        <NoteListItem title="test" content="fdakfjas fdja kfafdakfjas fdja kfa" />
+       {Object.keys(notes).map((item) => (
+         <div key={item} onClick={() => {dispatch(view(item)); dispatch(setEditorOpen(true))}}>
+           <NoteListItem key={item} title={notes[item].title} content={notes[item].content}/>
+
+         </div>
+        // <h1> {item.title}</h1>
+         
+       ))}
          </List>
   );
 }

@@ -1,4 +1,4 @@
-import { ListItem, ListItemText, Typography, makeStyles, Container, Divider } from "@material-ui/core";
+import { ListItem, ListItemText,  makeStyles, Divider } from "@material-ui/core";
 import stripHTML from "../../Utils/striphtml";
 
 const useStyles = makeStyles((theme) => ({

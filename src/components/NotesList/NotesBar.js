@@ -1,6 +1,10 @@
 import { Grid, makeStyles, Chip } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
+import { useDispatch } from "react-redux";
+import { createNote } from "../../Store/NotesSlice";
+import { setEditorOpen, view } from "../../Store/UISlice";
+import { Hidden } from "@material-ui/core";
 
 
 
@@ -23,14 +27,20 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         width: "3rem"
     },
-    title: {margin: "auto", paddingLeft:"3rem", color: "#ffe5a3"},
+    title: {margin: "auto", color: "#ffe5a3",
+            [theme.breakpoints.down('md')]: {
+                paddingLeft:"3rem",
+            }
+        },
 
 }))
 
 export const NotesBar = () => {
+    const dispatch = useDispatch()
     const classes = useStyles();
     const handleClick = () => {
         console.log("Clicked");
+        dispatch(view('3'))
     }
     return (
         <div className={classes.notesNav}>
@@ -39,7 +49,10 @@ export const NotesBar = () => {
                     <span className={classes.title}> 
                         <Chip color="primary" label={`Arsh's Notes`} onClick={handleClick}/> 
                     </span>
-                    <span className={classes.rightIcon}> <IconButton color="secondary"> <AddIcon /></IconButton> </span>
+                    <Hidden smUp>
+
+                    <span className={classes.rightIcon}> <IconButton color="secondary" onClick={() => {dispatch(setEditorOpen(true))}}> <AddIcon /></IconButton> </span>
+                    </Hidden>
                 </Grid>
 
               </Grid>

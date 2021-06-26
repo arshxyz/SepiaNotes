@@ -1,4 +1,4 @@
-import { makeStyles, Paper } from "@material-ui/core";
+import { makeStyles, Paper, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     editorContainer: {
@@ -27,6 +27,11 @@ export const EditorContainer = ({children}) => {
         className={classes.editorContainer}
         >
             {children}
+            <div style={{display: "flex"}}>
+
+            <Button style={{margin: "auto 2rem auto auto"}} color="primary" variant="contained">Delete</Button>
+            <Button style={{marginRight: "1rem"}} color="primary" variant="contained">Save</Button>
+            </div>
         </Paper>
     )
 }
