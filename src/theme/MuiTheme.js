@@ -11,6 +11,9 @@ const theme = createMuiTheme({
     MuiTypography: {
       root: {
         color: "#543939",
+      },
+      colorTextSecondary: {
+        wordBreak: "break-all"
       }
     },
     MuiPaper: {

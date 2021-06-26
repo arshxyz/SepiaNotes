@@ -1,17 +1,24 @@
 import theme from "./theme/MuiTheme";
 import {ThemeProvider } from "@material-ui/core/styles";
-import { NotesContainer } from "./components/NotesList/NotesContainer";
-import { EditorContainer } from "./components/NoteEdit/EditorContainer";
 import { MainLayout } from "./components/MainLayout";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import LoginPage from "./components/LoginPage";
 
 function App() {
   return (
     <div>
+        <Router>
       <ThemeProvider {...{theme}}>
-        {/* <NotesContainer />
-        <EditorContainer /> */}
+        <Switch>
+          <Route exact path="/">
         <MainLayout />
+          </Route>
+          <Route path="/login">
+            <LoginPage/>
+          </Route>
+        </Switch>
       </ThemeProvider>
+      </Router>
 
     </div>
   );

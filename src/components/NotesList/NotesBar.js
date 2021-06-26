@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
     notesNav: {
-        position: "sticky",
         top: "0",
         height: "3rem",
         width: "100%",

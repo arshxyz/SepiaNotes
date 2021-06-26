@@ -26,7 +26,7 @@ export const EditorContainer = ({children}) => {
         <Paper 
         className={classes.editorContainer}
         >
-            {children} fdfda
+            {children}
         </Paper>
     )
 }

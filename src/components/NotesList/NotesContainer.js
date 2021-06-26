@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
             margin: "0",
             borderRadius: "0"
         }
+    },
+    notesListContainer: {
+        // overflow: "hidden",
+        height: "100%",
     }
 }))
 export const NotesContainer = ({children}) => {
@@ -26,7 +30,10 @@ export const NotesContainer = ({children}) => {
         className={classes.notesContainer}
         >
             <NotesBar />
+            <div className={classes.notesListContainer}>
             {children}
+
+            </div>
         </Paper>
     )
 }
