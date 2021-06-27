@@ -1,11 +1,10 @@
-
- body {
+body {
   color: #543939;
   background-color: #ffe5a3;
-  font-family : Helvetica,Arial,sans-serif;
-  font-size:20px
- }
-    /* .mce-content-body[dir=rtl] blockquote {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+}
+/* .mce-content-body[dir=rtl] blockquote {
       border-right: 2px solid #6d737b;
       margin-right: 1.5rem;
       padding-right: 1rem;
