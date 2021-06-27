@@ -4,36 +4,41 @@ import { nanoid } from "nanoid";
 export const noteSlice = createSlice({
     name: 'ui',
     initialState: {
-            fdafa: {
-                title: "fdafa0",
-                content: "fdafad",
+            fdafdfdfdfa: {
+                title: "Completed: Implement Redux",
+                content: "<h3>Use @reduxjs/toolkit for state management - </h3> Read up on redux docs and transition to redux store from React's useState hooks",
+            },
+            fdafdsaffa: {
+                title: "Todo: Firebase auth",
+                content: "<h3>Implement firebase auth to log in user - </h3> Add options for logging in with Google and Email",
             },
             fdafdafda: {
-                title: "content",
-                content: "title",
-            }
+                title: "Todo: Firestore",
+                content: "<h2>Sync with firestore</h2> Use <b>createAsyncThunk</b> for redux integration with firestore document queries.</br> Also add debounced autosave (with lodash) ",
+            },
+            fdaffdsfqdioa: {
+                title: "Todo: Markdown support",
+                content: "Look for Github flavooured markdown plugins for tinyMCE ",
+            },
     },
     reducers: {
-        createNote: {
-            reducer: (state, action) => {
+        createNote: (state, action) => {
                 state[action.payload.id] = action.payload.data
-            },
-            prepare: (content, title) => {
-                console.log(title)
-                return {
-                    payload: {
-                        id: nanoid(),
-                        data: {
-                            content,
-                            title,
-                        }
-                    }
-                }
-            }
+                // state.   
+        },
+        modifyNote: (state, action) => {
+            state[action.payload.id] = action.payload.data;
+        },
+        deleteNote: (state, action) => {
+            let oldState = Object.assign({}, state);
+            delete oldState[action.payload];
+            console.log(oldState)
+            return oldState;
         }
+            
     },
 
 })
 
-export const {createNote} = noteSlice.actions;
+export const {createNote, modifyNote, deleteNote} = noteSlice.actions;
 export default noteSlice.reducer;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { makeStyles } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
@@ -24,16 +24,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function EditorComponent() {
+export default function EditorComponent({titleState, contentState}) {
   const viewing = useSelector(state => state.ui.viewing)
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const [currentTitle, setCurrentTitle] = titleState;
+  const [currentContent, setCurrentContent] = contentState;
+  useEffect(() => {
+    setCurrentTitle(viewing === 0 ? "" : store.getState().notes[viewing].title)
+    setCurrentContent(viewing === 0 ? "" : store.getState().notes[viewing].content)
+  }, [viewing, store])
+  const dispatch = useDispatch();
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
+  const handleTitleChange = (e) => {
+    setCurrentTitle(e.target.value);
+  }
   return (
       <div className={classes.mainEditor}>
       {/* <Typography variant="h5" align="center" className={classes.noteTitle}>Note title</Typography> */}
@@ -44,12 +48,13 @@ export default function EditorComponent() {
       </span>
         </Hidden>
       <span style={{paddingRight: "3rem",  marginRight: "0"}}>
-      <InputBase className={classes.noteTitle} placeholder="New Note"></InputBase>
+      <InputBase className={classes.noteTitle} onChange={handleTitleChange} value={currentTitle} placeholder="New Note"></InputBase>
       </span>
       <Editor
         apiKey="2m5fe6fmz0ykn96y1tr5qankprk8dsqhw26guyjtnoytn8jv"
         onInit={(evt, editor) => editorRef.current = editor}
         initialValue={viewing === 0 ? "" : store.getState().notes[viewing].content}
+        onEditorChange = {(newContent) => {setCurrentContent(newContent)}}
         init={{
           statusbar: false,
             height: "100%",

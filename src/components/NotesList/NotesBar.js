@@ -28,9 +28,7 @@ const useStyles = makeStyles((theme) => ({
         width: "3rem"
     },
     title: {margin: "auto", color: "#ffe5a3",
-            [theme.breakpoints.down('md')]: {
-                paddingLeft:"3rem",
-            }
+    paddingLeft:"3rem",
         },
 
 }))
@@ -49,10 +47,8 @@ export const NotesBar = () => {
                     <span className={classes.title}> 
                         <Chip color="primary" label={`Arsh's Notes`} onClick={handleClick}/> 
                     </span>
-                    <Hidden smUp>
 
-                    <span className={classes.rightIcon}> <IconButton color="secondary" onClick={() => {dispatch(setEditorOpen(true))}}> <AddIcon /></IconButton> </span>
-                    </Hidden>
+                    <span className={classes.rightIcon}> <IconButton color="secondary" onClick={() => {dispatch(setEditorOpen(true)); dispatch(view(0))}}> <AddIcon /></IconButton> </span>
                 </Grid>
 
               </Grid>

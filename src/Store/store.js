@@ -1,5 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
-import noteReducer from './NotesSlice' 
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import {createActionMiddleware, rejectEmpty, switchOnDelete} from './Middleware'
+import noteReducer from './NotesSlice'
 import uiReducer from './UISlice' 
 
 export default configureStore({
@@ -7,4 +8,5 @@ export default configureStore({
     notes: noteReducer,
     ui: uiReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rejectEmpty, createActionMiddleware, switchOnDelete)
 })

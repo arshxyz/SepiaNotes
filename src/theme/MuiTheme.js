@@ -13,7 +13,7 @@ const theme = createMuiTheme({
         color: "#543939",
       },
       colorTextSecondary: {
-        wordBreak: "break-all"
+        wordBreak: "break-word"
       }
     },
     MuiPaper: {

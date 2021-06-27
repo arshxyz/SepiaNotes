@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NoteListItem = ({title, content}) => {
-    const trimmedContent = stripHTML(content).slice(0, 80); 
+    const trimmedContent = stripHTML(content); 
     const classes = useStyles();
     return (
         <>

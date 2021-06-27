@@ -1,4 +1,8 @@
 import { makeStyles, Paper, Button } from "@material-ui/core";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteNote, modifyNote } from "../../Store/NotesSlice";
+import EditorComponent from "./EditorComponent";
 
 const useStyles = makeStyles((theme) => ({
     editorContainer: {
@@ -21,16 +25,24 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const EditorContainer = ({children}) => {
+    const titleState = useState("")
+    const contentState = useState("")
+    const dispatch = useDispatch()
+    const viewing = useSelector(state => state.ui.viewing)
     const classes = useStyles();
+    const handleSave = () => {
+       const data = {title: titleState[0], content: contentState[0]}
+       dispatch(modifyNote({id: viewing, data: data})) 
+    }
     return (
         <Paper 
         className={classes.editorContainer}
         >
-            {children}
+            <EditorComponent titleState={titleState} contentState={contentState}/>
             <div style={{display: "flex"}}>
 
-            <Button style={{margin: "auto 2rem auto auto"}} color="primary" variant="contained">Delete</Button>
-            <Button style={{marginRight: "1rem"}} color="primary" variant="contained">Save</Button>
+            <Button style={{margin: "auto 2rem auto auto"}} color="primary" variant="contained" onClick={()=>{dispatch(deleteNote(viewing))}} >Delete</Button>
+            <Button style={{marginRight: "1rem"}} color="primary" variant="contained" onClick={handleSave}>Save</Button>
             </div>
         </Paper>
     )
