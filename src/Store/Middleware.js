@@ -1,10 +1,9 @@
 import { nanoid } from "nanoid";
-import { createNote, modifyNote } from "./NotesSlice";
-import store from "./store";
-import { view } from "./UISlice";
+import { createNote} from "./NotesSlice";
+import { setEditorOpen, view } from "./UISlice";
 
 const createActionMiddleware = (store) => (next) => (action) => {
-  if (action.type === "ui/modifyNote") {
+  if (action.type === "notes/modifyNote") {
     if (store.getState().ui.viewing === 0) {
       let id = nanoid();
       store.dispatch(createNote({ data: action.payload.data, id: id }));
@@ -16,7 +15,7 @@ const createActionMiddleware = (store) => (next) => (action) => {
 };
 
 const rejectEmpty = (store) => (next) => (action) => {
-  if (action.type === "ui/modifyNote" || action.type === "ui/createNote") {
+  if (action.type === "notes/modifyNote" || action.type === "notes/createNote") {
     if (!action.payload.data.content || !action.payload.data.title) {
       return;
     }
@@ -25,8 +24,9 @@ const rejectEmpty = (store) => (next) => (action) => {
 };
 
 const switchOnDelete = (store) => (next) => (action) => {
-  if (action.type === "ui/deleteNote") {
+  if (action.type === "notes/deleteNote" || action.type == "notes/modifyNote" || action.type == "notes/createNote") {
     store.dispatch(view(0));
+    store.dispatch(setEditorOpen(false))
   }
   next(action);
 };

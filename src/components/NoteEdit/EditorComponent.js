@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   noteTitle: {
     padding: theme.spacing(1),
     fontSize: "26px",
-    width: "50%",
+    width: "90%",
     paddingLeft: "1rem",
     color: theme.palette.primary.main,
     // textAlign: "center"

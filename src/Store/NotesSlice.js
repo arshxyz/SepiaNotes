@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
 
 export const noteSlice = createSlice({
-  name: "ui",
+  name: "notes",
   initialState: {
     fdafdfdfdfa: {
       title: "Completed: Implement Redux",
