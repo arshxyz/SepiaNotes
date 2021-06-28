@@ -17,14 +17,16 @@ const createActionMiddleware = (store) => (next) => (action) => {
 const rejectEmpty = (store) => (next) => (action) => {
   if (action.type === "notes/modifyNote" || action.type === "notes/createNote") {
     if (!action.payload.data.content || !action.payload.data.title) {
+      // error toast
       return;
     }
   }
+  // success toast
   next(action);
 };
 
 const switchOnDelete = (store) => (next) => (action) => {
-  if (action.type === "notes/deleteNote" || action.type == "notes/modifyNote" || action.type == "notes/createNote") {
+  if (action.type === "notes/deleteNote") {
     store.dispatch(view(0));
     store.dispatch(setEditorOpen(false))
   }

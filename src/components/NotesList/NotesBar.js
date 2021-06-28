@@ -31,10 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export const NotesBar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const handleClick = () => {
-    console.log("Clicked");
-    dispatch(view("3"));
-  };
+
   return (
     <div className={classes.notesNav}>
       <Grid container>
@@ -43,7 +40,6 @@ export const NotesBar = () => {
             <Chip
               color="primary"
               label={`Arsh's Notes`}
-              onClick={handleClick}
             />
           </span>
 
